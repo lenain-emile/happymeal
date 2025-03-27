@@ -12,13 +12,14 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="alea.css">  
     
   
 </head>
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Happy Meal</a>
+      <a class="navbar-brand" href="#">Happy </a>
       <form class="form-inline my-2 my-lg-0">
         <input id="nom" class="form-control mr-sm-2" type="text" placeholder="Nom d'utilisateur" aria-label="Nom d'utilisateur">
         <button id="button" type="submit">Envoyer</button>
@@ -42,6 +43,22 @@
   
   <div class="jumbotron">
     <h1 class="display-4 text-center">Happy Meal</h1>
+  </div>
+
+  
+
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Preparation</h2>  
+      <p id="preparation"></p>
+      <h3>Ingredients</h3>
+      <p id="ingredients">
+      </p>
+    </div>
+  
   </div>
 
   <div id="recettes-container" class="container"> </div>
