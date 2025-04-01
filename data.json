@@ -1,6 +1,7 @@
 {
    "recettes":[
       {
+         "id":1,
          "nom":"Poulet rôti aux herbes",
          "categorie":"Plat principal",
          "temps_preparation":"1 heure",
@@ -31,6 +32,7 @@
          ]
       },
       {
+         "id":2,
          "nom":"Salade de quinoa aux légumes grillés",
          "categorie":"Entrée",
          "temps_preparation":"30 minutes",
@@ -69,6 +71,7 @@
          ]
       },
       {
+         "id":3,
          "nom":"Tarte aux pommes",
          "categorie":"Dessert",
          "temps_preparation":"1 heure",
@@ -109,6 +112,7 @@
          ]
       },
       {
+         "id":4,
          "nom":"Soupe de lentilles",
          "categorie":"Entrée",
          "temps_preparation":"1 heure",
@@ -149,6 +153,7 @@
          ]
       },
       {
+         "id":5,
          "nom":"Pâtes Carbonara",
          "categorie":"Plat principal",
          "temps_preparation":"20 minutes",
@@ -190,6 +195,7 @@
          ]
       },
       {
+         "id":6,
          "nom":"Risotto aux champignons",
          "categorie":"Plat principal",
          "temps_preparation":"40 minutes",
@@ -233,6 +239,7 @@
          ]
       },
       {
+         "id":7,
          "nom":"Salade de fruits frais",
          "categorie":"Dessert",
          "temps_preparation":"20 minutes",
@@ -252,6 +259,7 @@
          ]
       },
       {
+         "id":8,
          "nom":"Ratatouille provençale",
          "categorie":"Plat principal",
          "temps_preparation":"1 heure",
@@ -293,6 +301,7 @@
          ]
       },
       {
+         "id":9,
          "nom":"Salade César",
          "categorie":"Entrée",
          "temps_preparation":"20 minutes",
@@ -332,6 +341,7 @@
          ]
       },
       {
+         "id":10,
          "nom":"Risotto aux champignons",
          "categorie":"Plat principal",
          "temps_preparation":"40 minutes",
@@ -375,6 +385,7 @@
          ]
       },
       {
+         "id":11,
          "nom":"Muffins aux myrtilles",
          "categorie":"Dessert",
          "temps_preparation":"30 minutes",
@@ -416,6 +427,7 @@
          ]
       },
       {
+         "id":12,
          "nom":"Lasagnes végétariennes",
          "categorie":"Plat principal",
          "temps_preparation":"1 heure 30 minutes",
@@ -458,6 +470,7 @@
          ]
       },
       {
+         "id":13,
          "nom":"Salade niçoise",
          "categorie":"Entrée",
          "temps_preparation":"20 minutes",
@@ -501,6 +514,7 @@
          ]
       },
       {
+         "id":14,
          "nom":"Tiramisu",
          "categorie":"Dessert",
          "temps_preparation":"30 minutes (+ temps de repos)",
