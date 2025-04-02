@@ -7,7 +7,7 @@ fetch('data.json')
         recettes.forEach(recette => {
             const recetteHTML = `
                 <div class="col-md-4 mb-4">
-                    <a href="detail.html?id=${recette.id}" class="card shadow-ms">
+                    <a href="detail.html?id=${recette.id}" class="card shadow-ms text-decoration-none text-dark">
                         <div class="card-body">
                             <h5 class="card-title">${recette.nom}</h5>
                             <p class="card-text"><strong>Catégorie :</strong> ${recette.categorie}</p>
@@ -20,7 +20,6 @@ fetch('data.json')
         });
     })
     .catch(error => console.error("Erreur lors du chargement des recettes:", error));
-
 
 
 
