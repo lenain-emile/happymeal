@@ -13,3 +13,8 @@ console.log(jour + '/' + mois + '/' + annee);
 if (localStorage.getItem("nom") != null) {
   h1.textContent = "Bonjour, " + localStorage.getItem("nom");
 }
+
+
+document.getElementById("go-back").addEventListener("click", () => {
+  history.back();
+});

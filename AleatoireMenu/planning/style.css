@@ -1,0 +1,67 @@
+/* Tableau global */
+.table {
+    width: 100%;
+    max-width: 1200px; /* Limite la largeur du tableau */
+    margin: 0 auto; /* Centre le tableau */
+    table-layout: fixed; /* Fixe la largeur des colonnes */
+    border-collapse: collapse; /* Fusionne les bordures des cellules */
+  }
+  
+  /* En-tête du tableau */
+  .thead-dark th {
+    background-color: #343a40; /* Couleur de fond sombre */
+    color: white; /* Texte en blanc */
+    padding: 10px; /* Espace interne */
+  }
+  
+  /* Cellules du tableau */
+  .table td {
+    padding: 15px; /* Espace interne dans chaque cellule */
+    vertical-align: middle; /* Aligne le contenu au centre verticalement */
+    border: 1px solid #ddd; /* Bordure grise légère */
+  }
+  
+  /* Réduction des cellules de sélection */
+  table select {
+    width: 100%; /* Prend toute la largeur de la cellule */
+    padding: 5px; /* Espacement interne */
+    border-radius: 4px; /* Coins arrondis */
+    border: 1px solid #ccc; /* Bordure des champs de sélection */
+    font-size: 14px; /* Taille de police */
+  }
+  
+  /* Sections dans les cellules (petit déjeuner, déjeuner, dîner) */
+  table td div {
+    margin-bottom: 10px; /* Espace entre les sections */
+  }
+  
+  /* Largeur maximale du tableau sur petits écrans */
+  @media (max-width: 768px) {
+    .table {
+      width: 100%;
+      font-size: 12px; /* Taille de police plus petite */
+    }
+  
+    /* Empile les colonnes sous forme de lignes sur petits écrans */
+    .table td {
+      display: block;
+      width: 100%;
+      padding: 10px 0;
+    }
+  
+    .table th {
+      display: none; /* Masque les en-têtes sur les petits écrans */
+    }
+  
+    /* Améliore la lisibilité des champs de sélection */
+    table select {
+      font-size: 12px; /* Petite taille de police pour les petits écrans */
+    }
+  }
+  
+  /* Bouton de validation */
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
