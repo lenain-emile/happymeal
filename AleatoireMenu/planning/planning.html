@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planning des Repas</title>
+  <script src="planning.js" defer></script>
+  <script src="generatePDF.js" defer></script>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+  <script>
+    // Fonction pour charger les repas favoris dans les selects
+    function chargerFavorisDansSelect() {
+      const favoris = JSON.parse(localStorage.getItem('favorites')) || []; // Récupérer les favoris depuis le localStorage
+      const jours = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']; // Liste des jours de la semaine
+
+      if (favoris.length > 0) {
+        jours.forEach(jour => {
+          const petitDejeunerSelect = document.querySelector(`#${jour}-petit-dejeuner`); // Sélecteur pour le petit-déjeuner
+          const dejeunerSelect = document.querySelector(`#${jour}-dejeuner`); // Sélecteur pour le déjeuner
+          const dinerSelect = document.querySelector(`#${jour}-diner`); // Sélecteur pour le dîner
+
+          // Réinitialiser les options pour ce jour
+          petitDejeunerSelect.innerHTML = '<option value="">Choisir</option>';
+          dejeunerSelect.innerHTML = '<option value="">Choisir</option>';
+          dinerSelect.innerHTML = '<option value="">Choisir</option>';
+
+          // Ajouter des repas favoris dans chaque select
+          favoris.forEach(rep => {
+            const optionPetitDej = document.createElement('option');
+            optionPetitDej.value = rep.id;
+            optionPetitDej.textContent = rep.nom;
+
+            const optionDej = document.createElement('option');
+            optionDej.value = rep.id;
+            optionDej.textContent = rep.nom;
+
+            const optionDiner = document.createElement('option');
+            optionDiner.value = rep.id;
+            optionDiner.textContent = rep.nom;
+
+            petitDejeunerSelect.appendChild(optionPetitDej);
+            dejeunerSelect.appendChild(optionDej);
+            dinerSelect.appendChild(optionDiner);
+          });
+        });
+      } else {
+        alert('Aucun favori trouvé.');
+      }
+    }
+
+    // Fonction pour sauvegarder les repas sélectionnés dans le localStorage
+    function sauvegarderRepas() {
+      const jours = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+      const repasSemaine = {};
+
+      jours.forEach(jour => {
+        repasSemaine[jour] = {
+          petitDejeuner: document.querySelector(`#${jour}-petit-dejeuner`).value,
+          dejeuner: document.querySelector(`#${jour}-dejeuner`).value,
+          diner: document.querySelector(`#${jour}-diner`).value
+        };
+      });
+
+      // Sauvegarder les repas sélectionnés dans le localStorage
+      localStorage.setItem('planning_repas', JSON.stringify(repasSemaine));
+      alert("Votre planning a été sauvegardé !");
+    }
+
+    // Fonction pour charger le planning sauvegardé à partir du localStorage
+    function chargerPlanning() {
+      const planning = JSON.parse(localStorage.getItem('planning_repas'));
+      
+      if (planning) {
+        const jours = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+        
+        jours.forEach(jour => {
+          const petitDejeunerSelect = document.querySelector(`#${jour}-petit-dejeuner`);
+          const dejeunerSelect = document.querySelector(`#${jour}-dejeuner`);
+          const dinerSelect = document.querySelector(`#${jour}-diner`);
+          
+          // Restaure les valeurs dans les selects si elles existent
+          if (planning[jour]) {
+            petitDejeunerSelect.value = planning[jour].petitDejeuner || '';
+            dejeunerSelect.value = planning[jour].dejeuner || '';
+            dinerSelect.value = planning[jour].diner || '';
+          }
+        });
+      }
+    }
+
+    // Charger les favoris et le planning lorsque la page est prête
+    window.onload = function() {
+      chargerFavorisDansSelect();
+      chargerPlanning();
+    }
+    
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+  <h1 id="h1">Planning des Repas (Petit-Déjeuner, Déjeuner, Dîner)</h1>
+  <p class="text-center">Sélectionnez un repas pour chaque jour de la semaine (Petit-Déjeuner, Déjeuner et Dîner) parmi vos favoris.</p>
+
+  <div class="container mt-4 text-center"></div>
+    <table class="table table-bordered text-center">
+      <thead class="thead-dark">
+        <tr>
+          <th>Lundi</th>
+          <th>Mardi</th>
+          <th>Mercredi</th>
+          <th>Jeudi</th>
+          <th>Vendredi</th>
+          <th>Samedi</th>
+          <th>Dimanche</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="lundi">
+            <div>
+              <label for="lundi-petit-dejeuner">Petit-Déjeuner</label>
+              <select id="lundi-petit-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="lundi-dejeuner">Déjeuner</label>
+              <select id="lundi-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="lundi-diner">Dîner</label>
+              <select id="lundi-diner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+          </td>
+          <td id="mardi">
+            <div>
+              <label for="mardi-petit-dejeuner">Petit-Déjeuner</label>
+              <select id="mardi-petit-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="mardi-dejeuner">Déjeuner</label>
+              <select id="mardi-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="mardi-diner">Dîner</label>
+              <select id="mardi-diner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+          </td>
+          <td id="mercredi">
+            <div>
+              <label for="mercredi-petit-dejeuner">Petit-Déjeuner</label>
+              <select id="mercredi-petit-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="mercredi-dejeuner">Déjeuner</label>
+              <select id="mercredi-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="mercredi-diner">Dîner</label>
+              <select id="mercredi-diner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+          </td>
+          <td id="jeudi">
+            <div>
+              <label for="jeudi-petit-dejeuner">Petit-Déjeuner</label>
+              <select id="jeudi-petit-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="jeudi-dejeuner">Déjeuner</label>
+              <select id="jeudi-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="jeudi-diner">Dîner</label>
+              <select id="jeudi-diner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+          </td>
+          <td id="vendredi">
+            <div>
+              <label for="vendredi-petit-dejeuner">Petit-Déjeuner</label>
+              <select id="vendredi-petit-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="vendredi-dejeuner">Déjeuner</label>
+              <select id="vendredi-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="vendredi-diner">Dîner</label>
+              <select id="vendredi-diner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+          </td>
+          <td id="samedi">
+            <div>
+              <label for="samedi-petit-dejeuner">Petit-Déjeuner</label>
+              <select id="samedi-petit-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="samedi-dejeuner">Déjeuner</label>
+              <select id="samedi-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="samedi-diner">Dîner</label>
+              <select id="samedi-diner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+          </td>
+          <td id="dimanche">
+            <div>
+              <label for="dimanche-petit-dejeuner">Petit-Déjeuner</label>
+              <select id="dimanche-petit-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="dimanche-dejeuner">Déjeuner</label>
+              <select id="dimanche-dejeuner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+            <div>
+              <label for="dimanche-diner">Dîner</label>
+              <select id="dimanche-diner">
+                <option value="">Choisir</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center mt-3">
+      <button class="btn btn-primary" onclick="sauvegarderRepas()">Valider</button>
+      <button id="pdf" class="btn btn-primary">PDF</button>
+    </div>
+  </div>
+  <button id="go-back">Go back!</button>
+  
+</body>
+</html>
